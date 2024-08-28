@@ -1,0 +1,19 @@
+{
+    "name": "dtic/msp",
+    "description": "module pour suivi de grossesse",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "DTIC\\MSP\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Merveillesdebora",
+            "email": "biniakounoumerveillesdebora@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
