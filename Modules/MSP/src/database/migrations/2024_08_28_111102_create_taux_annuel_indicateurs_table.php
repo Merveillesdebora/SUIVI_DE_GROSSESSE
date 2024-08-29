@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('taux_annuel_indicateurs', function (Blueprint $table) {
             $table->id(); 
-            $table->decimal('taux_indicateur', 8, 2); 
-            $table->date('date_valeur'); 
-            $table->enum('statut_taux_indicateur', ['actif', 'inactif']); 
-            $table->integer('id_indicateur');
+            $table->decimal('taux_indicateur', 8, 2)->nullable(); 
+            $table->date('date_valeur')->nullable(); 
+            $table->enum('statut_taux_indicateur', ['actif', 'inactif'])->nullable(); 
+            $table->integer('id_indicateur')->nullable();
             $table->timestamps(); 
         });
     }

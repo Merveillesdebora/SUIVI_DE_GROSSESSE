@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('taux_accroissements', function (Blueprint $table) {
             $table->id(); 
-            $table->decimal('taux_ap', 8, 2); 
-            $table->enum('statut_taux_ap', ['actif', 'inactif']); 
-            $table->date('date_valeur'); 
+            $table->decimal('taux_ap', 8, 2)->nullable(); 
+            $table->enum('statut_taux_ap', ['actif', 'inactif'])->nullable(); 
+            $table->date('date_valeur')->nullable(); 
             $table->timestamps(); 
         });
     }

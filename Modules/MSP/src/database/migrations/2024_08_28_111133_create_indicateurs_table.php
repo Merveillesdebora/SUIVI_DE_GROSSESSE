@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('indicateurs', function (Blueprint $table) {
             $table->id(); 
-            $table->string('nom_indicateur'); 
-            $table->text('description_indicateur'); 
-            $table->string('formule_de_calcul'); 
-            $table->enum('etat_indicateur', ['actif', 'inactif']);
-            $table->enum('type_indicateur', ['general', 'individuel']);
+            $table->string('nom_indicateur')->nullable(); 
+            $table->text('description_indicateur')->nullable(); 
+            $table->string('formule_de_calcul')->nullable(); 
+            $table->enum('etat_indicateur', ['actif', 'inactif'])->nullable();
+            $table->enum('type_indicateur', ['general', 'individuel'])->nullable();
             $table->timestamps(); 
         });
     }
