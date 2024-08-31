@@ -8,4 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'DTIC\\MSP\\MspServiceProvider' => $baseDir . '/src/MspServiceProvider.php',
+    'DTIC\\MSP\\app\\Models\\Indicateur' => $baseDir . '/src/app/Models/Indicateur.php',
+    'DTIC\\MSP\\app\\Models\\TauxAccroissement' => $baseDir . '/src/app/Models/TauxAccroissement.php',
+    'DTIC\\MSP\\app\\Models\\TauxAnnuel' => $baseDir . '/src/app/Models/TauxAnnuel.php',
 );

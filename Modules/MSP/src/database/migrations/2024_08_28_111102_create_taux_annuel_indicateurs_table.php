@@ -16,8 +16,8 @@ return new class extends Migration
             $table->decimal('taux_indicateur', 8, 2)->nullable(); 
             $table->date('date_valeur')->nullable(); 
             $table->enum('statut_taux_indicateur', ['actif', 'inactif'])->nullable(); 
-            $table->integer('id_indicateur')->nullable();
             $table->timestamps(); 
+            
         });
     }
 

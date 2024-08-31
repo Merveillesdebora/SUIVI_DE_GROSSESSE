@@ -23,6 +23,9 @@ class ComposerStaticInit14c9755580d7c303c9a9a17c2f6a6daa
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'DTIC\\MSP\\MspServiceProvider' => __DIR__ . '/../..' . '/src/MspServiceProvider.php',
+        'DTIC\\MSP\\app\\Models\\Indicateur' => __DIR__ . '/../..' . '/src/app/Models/Indicateur.php',
+        'DTIC\\MSP\\app\\Models\\TauxAccroissement' => __DIR__ . '/../..' . '/src/app/Models/TauxAccroissement.php',
+        'DTIC\\MSP\\app\\Models\\TauxAnnuel' => __DIR__ . '/../..' . '/src/app/Models/TauxAnnuel.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
