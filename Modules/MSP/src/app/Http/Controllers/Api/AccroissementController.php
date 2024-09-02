@@ -5,50 +5,48 @@ namespace DTIC\MSP\App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Http\Request;
-use DTIC\MSP\App\Models\Indicateur;
+use DTIC\MSP\App\Models\TauxAccroissement;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
-
-class IndicateurController extends Controller
+class AccroissementController extends Controller
 {
-    public function indicateurs()
+    public function accroissements()
     {
-        $indicateurs = Indicateur::all();
+        $accroissements = TauxAccroissement::all();
         return response()->json([
             "success" => true,
             "message" => "Listes des indicateurs",
-            "data" => $indicateurs,
+            "data" => $accroissements,
         ], 200);
     }
+
     public function findOne($id)
     {
-        $indicateurs = Indicateur::find($id);
-        if ($indicateurs == null) {
+        $accroissements = TauxAccroissement::find($id);
+        if ($accroissements == null) {
             return response()->json([
                 "success" => false,
-                "message" => "Aucun indicateur trouvé"
+                "message" => "Aucun TauxAccroissement trouvé"
             ], 404);
         }
-
         return response()->json([
             "success" => true,
             "message" => "l'indicateur a été trouvé",
-            "data" => $indicateurs
+            "data" => $accroissements
         ], 200);
     }
+
     // ajout
     public function create(Request $request)
     {
 
         $rules = [
-            'nom_indicateur' => 'string|nullable',
-            'description_indicateur' => 'string|nullable',
-            'formule_de_calcul' => 'string|nullable',
-            'etat_indicateur' => 'in:actif,inactif|nullable',
-            'type_indicateur' => 'in:general,individuel|nullable',
+            'taux_ap' => 'numeric|nullable',
+            'statut_taux_ap' => 'in:actif,inactif|nullable',
+            'date_valeur' => 'date|nullable',
         ];
 
 
@@ -62,17 +60,15 @@ class IndicateurController extends Controller
         }
 
         try {
-            $indicateur = new Indicateur;
-            $indicateur->nom_indicateur = $request->nom_indicateur;
-            $indicateur->description_indicateur = $request->description_indicateur;
-            $indicateur->formule_de_calcul = $request->formule_de_calcul;
-            $indicateur->etat_indicateur = $request->etat_indicateur;
-            $indicateur->type_indicateur = $request->type_indicateur;
-            $indicateur->save();
+            $accroissements = new TauxAccroissement();
+            $accroissements->taux_ap = $request->taux_ap;
+            $accroissements->statut_taux_ap = $request->statut_taux_ap;
+            $accroissements->date_valeur = $request->date_valeur;
+            $accroissements->save();
             return response()->json([
                 "success" => true,
-                "message" => "indicateur créé avec succès",
-                "data" => $indicateur
+                "message" => "taux_accroissements créé avec succès",
+                "data" => $accroissements
             ], 201);
         } catch (Exception $e) {
             Log::channel("msp")->error($e->getMessage());
@@ -86,11 +82,9 @@ class IndicateurController extends Controller
     {
 
         $rules = [
-            'nom_indicateur' => 'string|nullable',
-            'description_indicateur' => 'string|nullable',
-            'formule_de_calcul' => 'string|nullable',
-            'etat_indicateur' => 'in:actif,inactif|nullable',
-            'type_indicateur' => 'in:general,individuel|nullable',
+            'taux_ap' => 'numeric|nullable',
+            'statut_taux_ap' => 'in:actif,inactif|nullable',
+            'date_valeur' => 'date|nullable',
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -102,26 +96,24 @@ class IndicateurController extends Controller
             ], 500);
         }
 
-        $indicateurs = Indicateur::find($id);
+        $accroissements = TauxAccroissement::find($id);
 
-        if ($indicateurs == null) {
+        if ($accroissements == null) {
             return response()->json([
                 "success" => false,
-                "message" => "Aucun indicateur trouvé"
+                "message" => "Aucun taux_accroissements trouvé"
             ], 404);
         }
 
         try {
-            $indicateurs->nom_indicateur = $request->nom_indicateur;
-            $indicateurs->description_indicateur = $request->description_indicateur;
-            $indicateurs->formule_de_calcul = $request->formule_de_calcul;
-            $indicateurs->etat_indicateur = $request->etat_indicateur;
-            $indicateurs->type_indicateur = $request->type_indicateur;
-            $indicateurs->save();
+            $accroissements->taux_ap = $request->taux_ap;
+            $accroissements->statut_taux_ap = $request->statut_taux_ap;
+            $accroissements->date_valeur = $request->date_valeur;
+            $accroissements->save();
             return response()->json([
                 "success" => true,
-                "message" => "Indicateurs modifié avec succès",
-                "data" => $indicateurs
+                "message" => "taux_accroissements modifié avec succès",
+                "data" => $accroissements
             ], 202);
         } catch (Exception $e) {
             Log::channel("msp")->error($e->getMessage());
@@ -134,19 +126,19 @@ class IndicateurController extends Controller
     // suppression
     public function destroy($id)
     {
-        $indicateurs = Indicateur::find($id);
+        $accroissements = TauxAccroissement::find($id);
 
-        if ($indicateurs == null) {
+        if ($accroissements == null) {
             return response()->json([
                 "success" => false,
                 "message" => "Aucun indicateur trouvé"
             ], 404);
         }
 
-        $indicateurs->delete();
+        $accroissements->delete();
         return response()->json([
             "success" => true,
-            "message" => "indicateur supprimé avec succès"
+            "message" => "taux_accroissements supprimé avec succès"
         ], 200);
     }
 }
